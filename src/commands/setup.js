@@ -16,15 +16,7 @@ async function getUserInfoFromApi() {
       end_date: moment().format('YYYY-MM-DDTHH:mm:ss.SSS'),
     },
   });
-  const startDate = completedReviews.body
-    .map(review => moment(review.assigned_at)) // returns date of review
-    .map(date => date.valueOf()) // returns date in Unix Time (milliseconds from 1970)
-    .reduce((acc, val) => { // returns the smallest number
-      if (acc < val) {
-        return acc;
-      }
-      return val;
-    });
+  const startDate = moment('2016-06-05').format('YYYY-MM-DD');
   config.startDate = moment(startDate).format('YYYY-MM-DD');
   startDateSpinner.succeed(`Startdate is ${config.startDate}`);
 
